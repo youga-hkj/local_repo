@@ -4,12 +4,15 @@ package com.project.test;
 import javax.annotation.Resource;
 
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.project.mapper.SUserMapper;
 import com.project.po.SUser;
 
 public class daotest {
 	
+	
+	@Autowired
 	@Resource
 	private SUserMapper userdao;
 	
