@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,15 +51,16 @@ public class UserController {
 	
 	@RequestMapping(value="/main",method = RequestMethod.GET)
 	public String userLoginCheck(Model model,HttpSession session,@RequestParam("username") String username,
-			@RequestParam("password") String password){
-		boolean result = userSerivce.findUserByUnamePwd(username, password);
-		if(result){			
+			@RequestParam("password") String password,HttpServletRequest request){
+		List<User> result = userSerivce.findUserByUnamePwd(username, password);
+		if(result.size()>0){
+			List<String> userdata = userSerivce.getUserDataById(result.get(0).getUserId());
+			request.setAttribute("user_data", userdata);
 			session.setAttribute("user",username );
 			return "/user/main";
 		}else{
 			model.addAttribute("msg","login error!");
 			return "/user/login";
 		}
-		
 	}
 }

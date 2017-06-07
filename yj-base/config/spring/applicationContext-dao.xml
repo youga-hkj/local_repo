@@ -45,8 +45,6 @@
 		<property name="basePackage" value="com.project.mapper"/>
 		<!-- 使用sqlSessionFactoryBeanName -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-		
-		
 	</bean>
 	
 </beans>
