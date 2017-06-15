@@ -31,8 +31,8 @@
     </bean>
 
     <!-- 静态资源 解析 -->
-    <mvc:resources location="/js/" mapping="/js/**" />
-    <mvc:resources location="/img/" mapping="/img/**" />
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
+    <mvc:resources location="/WEB-INF/img/" mapping="/img/**" />
 
     <!-- 注解处理器映射器 -->
     <bean
@@ -42,7 +42,6 @@
     <!-- 文件上传 -->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 设置上传文件的最大尺寸为5MB -->
         <property name="maxUploadSize">
             <value>5242880</value>
         </property>

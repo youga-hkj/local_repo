@@ -209,7 +209,6 @@
           <artifactId>cglib</artifactId>
           <version>2.2</version>
       </dependency>
-
   </dependencies>
   <build>
     <finalName>yj-base</finalName>
