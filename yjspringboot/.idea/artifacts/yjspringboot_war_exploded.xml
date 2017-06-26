@@ -4,7 +4,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="yjspringboot" />
+          <element id="module-output" name="greenhouse" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: junit:junit:4.9" />
@@ -61,7 +61,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/yj-base/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="yjspringboot/web/Web" />
+      <element id="javaee-facet-resources" facet="greenhouse/web/Web" />
     </root>
   </artifact>
 </component>

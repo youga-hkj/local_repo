@@ -47,18 +47,47 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <table tableName="t_user" >
+        <!--<table tableName="t_user" >-->
+            <!--<property name="constructorBased" value="false"/>-->
+            <!--<property name="ignoreQualifiersAtRuntime" value="false"/>-->
+            <!--<property name="immutable" value="false"/>-->
+            <!--<property name="modelOnly" value="false"/>-->
+        <!--</table>-->
+        <!--<table tableName="users" >-->
+            <!--<property name="constructorBased" value="false"/>-->
+            <!--<property name="ignoreQualifiersAtRuntime" value="false"/>-->
+            <!--<property name="immutable" value="false"/>-->
+            <!--<property name="modelOnly" value="false"/>-->
+        <!--</table>-->
+        <table tableName="greenhouse_equipment" >
             <property name="constructorBased" value="false"/>
             <property name="ignoreQualifiersAtRuntime" value="false"/>
             <property name="immutable" value="false"/>
             <property name="modelOnly" value="false"/>
         </table>
-        <table tableName="users" >
+        <table tableName="greenhouse_greenhouse" >
             <property name="constructorBased" value="false"/>
             <property name="ignoreQualifiersAtRuntime" value="false"/>
             <property name="immutable" value="false"/>
             <property name="modelOnly" value="false"/>
         </table>
-
+        <table tableName="greenhouse_sensordata" >
+            <property name="constructorBased" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <property name="immutable" value="false"/>
+            <property name="modelOnly" value="false"/>
+        </table>
+        <table tableName="greenhouse_user" >
+            <property name="constructorBased" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <property name="immutable" value="false"/>
+            <property name="modelOnly" value="false"/>
+        </table>
+        <table tableName="greenhouse_user_greenhouse" >
+            <property name="constructorBased" value="false"/>
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <property name="immutable" value="false"/>
+            <property name="modelOnly" value="false"/>
+        </table>
     </context>
 </generatorConfiguration>

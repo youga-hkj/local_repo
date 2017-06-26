@@ -1,13 +1,15 @@
 package com.project.service.impl;
 
-import com.project.mapper.UsersMapper;
-import com.project.po.Users;
-import com.project.po.UsersExample;
+import com.project.mapper.GreenhouseSensordataMapper;
+import com.project.mapper.GreenhouseUserGreenhouseMapper;
+import com.project.mapper.GreenhouseUserMapper;
+
+import com.project.po.*;
 import com.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,30 +19,58 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UsersMapper userdao;
-
+    private GreenhouseUserMapper userdao;
+    @Autowired
+    private GreenhouseUserGreenhouseMapper greenhouseUserGreenhouseDao;
+    @Autowired
+    private GreenhouseSensordataMapper greenhouseSensordataDao;
     public boolean checkUserInfo(String username, String password) {
-        UsersExample example = new UsersExample();
-        example.createCriteria().andNameEqualTo(username).andPasswordEqualTo(password);
-        List<Users> list = userdao.selectByExample(example);
-        if (list.size()>0){
+        GreenhouseUserExample example = new GreenhouseUserExample();
+        example.createCriteria().andLoginnameEqualTo(username).andPasswordEqualTo(password);
+        List<GreenhouseUser> userList = userdao.selectByExample(example);
+        if(userList.size()>0){
             return true;
         }else{
             return false;
         }
     }
 
-    public List<Users> getAllUser() {
-        UsersExample example = new UsersExample();
+    public List<GreenhouseUser> getAllUser() {
+        GreenhouseUserExample example = new GreenhouseUserExample();
         example.createCriteria().andIdIsNotNull();
         return userdao.selectByExample(example);
     }
 
-    public void deleteUserById(int id) {
+    public void deleteUserById(long id) {
         userdao.deleteByPrimaryKey(id);
     }
 
-    public void addUser(Users user) {
-     userdao.insert(user);
+    public void addUser(GreenhouseUser user) {
+        userdao.insert(user);
+    }
+
+    public HashMap<String,List<GreenhouseSensordata>> getSensordataByUserId(long id) {
+        GreenhouseUserGreenhouseExample greenhouseUserGreenhouseExample = new GreenhouseUserGreenhouseExample();
+        GreenhouseSensordataExample greenhouseSensordataExample = new GreenhouseSensordataExample();
+        HashMap<String,List<GreenhouseSensordata>> result = new HashMap<String, List<GreenhouseSensordata>>();
+        List<GreenhouseUserGreenhouseKey> userlist = greenhouseUserGreenhouseDao.selectByExample(greenhouseUserGreenhouseExample);
+        for (GreenhouseUserGreenhouseKey userkey:userlist) {
+
+            long greenhouseId = userkey.getGreenhouseid();
+            greenhouseSensordataExample.createCriteria().andEquipmentidEqualTo(greenhouseId);
+            List<GreenhouseSensordata> userdata = greenhouseSensordataDao.selectByExample(greenhouseSensordataExample);
+            result.put(Long.toString(greenhouseId),userdata);
+        }
+        return result;
+    }
+
+    public List<String> getGreenhouseIdByUserId(long userid) {
+        List<String> result = new ArrayList<String>();
+        GreenhouseUserGreenhouseExample greenhouseUserGreenhouseExample = new GreenhouseUserGreenhouseExample();
+        List<GreenhouseUserGreenhouseKey> equpmentList= greenhouseUserGreenhouseDao.selectByExample(greenhouseUserGreenhouseExample);
+        for (GreenhouseUserGreenhouseKey equpment : equpmentList) {
+           result.add(Long.toString(equpment.getGreenhouseid()));
+        }
+        return result;
     }
 }

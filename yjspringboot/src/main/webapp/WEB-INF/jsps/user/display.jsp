@@ -12,7 +12,7 @@
 		<tr>
 			<th>id</th>
 			<th>name</th>
-			<th>age</th>
+			<th>remark</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
@@ -20,7 +20,7 @@
 			<tr>
 				<td>${user.id}</td>
 				<td>${user.name}</td>
-				<td>${user.age}</td>
+				<td>${user.remark}</td>
 				<td><a href="/user/edit?id=${user.id}">Edit</a></td>
 				<td><a href="/user/delete?id=${user.id}">Delete</a></td>
 			</tr>
